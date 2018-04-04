@@ -25,7 +25,9 @@ Please make sure to bring a laptop with wireless network and necessary preparati
 |1030-1200|Installation onto a host (Markus S, Dave M)|90'|
 |1200-1300|Lunch|60'|
 |1300-1400|Developing, integrating and deploying an Atlas module (Markus S, Dave M)|60'|
-|1400-1430|Coffee|30'|
-|1500-1545|Using Mirroreum (RStudio server) & accessing data with ALA4R (Markus S)|45'|
+|1400-1430|Data management with cassandra and solr (Manash S, Dave M)|30'|
+|1430-1500|Coffee|30'|
+|1500-1545|Data access, data flows and future directions (Dave M & Tim R)|45'|
+|1545-1630|Using Mirroreum (RStudio server) & accessing data with ALA4R (Markus S)|45'|
 |1630-1645|Summary and farewell (Anders T & Holger D)|15'|
 
