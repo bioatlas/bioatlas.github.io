@@ -4,7 +4,18 @@ output: html_document
 permalink: index.html
 ---
 
-## Welcome to Biodiversity Atlas Sweden @ GitHub
+## Welcome 
+
+Biodiversity Atlas Sweden has all materials available at GitHub so developers, system integrators and system administrators can find notes on how to get started here.
+
+## April 2018 mini workshop
+
+In mid April 2018, a mini-workshop is organized on the topic "Swedish Biodiversity e-infrastructure - today and tomorrow".
+
+- The [Day 2 agenda is here](/agenda)
+- Please [prepare using these instructions](/requirements) if you're attending
+
+## What code and documentation is available from GitHub?
 
 You can find a set of repositories used in https://bioatlas.se at GitHub. These repositories - [currently more than 20 repositories](https://github.com/bioatlas) - include various core and non-core parts of the Biodiversity Atlas Sweden. 
 
