@@ -57,15 +57,15 @@ Please first make sure that you take the time to prepare your development enviro
 
 You should then be able to issue these commands in order to get the contents of this repository, then build and start the services locally:
 
-For the workshop, please clone the repository ala-docker and chekout the branch solr6-cassandra3
+For the workshop, please clone the repository ala-docker and checkout the branch solr6-cassandra3
     
     # get code
     git clone https://github.com/bioatlas/ala-docker.git
     
     git checkout solr6-cassandra3
 
-    # build and start
-    The Makefile contains a number of rules. For setting up the system execute the following in the order as described.
+    # setting up
+    # The Makefile contains a number of rules. For setting up the system execute the following in the order as described.
 
     # pull the docker images of ALA components
     make pull
