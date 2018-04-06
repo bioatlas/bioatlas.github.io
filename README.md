@@ -49,7 +49,6 @@ Here is an overview of some of the important repositories used in Biodiversity A
 
 Individual repositories in general have a README.md file with usage instructions.
 
-
 ## Getting started
 
 A good starting point is the `ala-docker` repo described above. Consult the `README.md` file there, which provides some brief instructions - indicating that `git`, `make`, `docker` and `docker-compose` are required. 
@@ -57,12 +56,38 @@ A good starting point is the `ala-docker` repo described above. Consult the `REA
 Please first make sure that you take the time to prepare your development environment properly so that you [meet the host requirements](/requirements).
 
 You should then be able to issue these commands in order to get the contents of this repository, then build and start the services locally:
+
+For the workshop, please clone the repository ala-docker and chekout the branch solr6-cassandra3
     
     # get code
     git clone https://github.com/bioatlas/ala-docker.git
     
+    git checkout solr6-cassandra3
+
     # build and start
-    make
+    The Makefile contains a number of rules. For setting up the system execute the following in the order as described.
+
+    # pull the docker images of ALA components
+    make pull
+
+    # pull docker images of softwares like solr, cassandra , mysql, wordpress etc.
+    make pull2
+
+    # download and unzip the wordpress theme
+    make theme-dl
+
+    # generate random passwords and save them in .env* files in the env
+     folder, used for authentication between applications
+    make dotfiles
+
+    # create and save admin password for simple authentication
+    make htpasswd
+
+    # generate self-signed ssl certificates
+    make ssl-certs
+
+    # start up the service
+    make up
 
 Once these steps succeed, further steps including testing, making changes, recompiling and making contributions are possible.
 
