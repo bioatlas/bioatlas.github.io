@@ -8,8 +8,8 @@ permalink: agenda.html
 
 ## Time and Location
 
-Time: 2018-04-12 from 09:00 to 16:45
-Venue: SLU Ultuna, Ulls hus, Lecture hall T (room E208)
+- Time: 2018-04-12 from 09:00 to 16:45
+- Venue: SLU Ultuna, Ulls hus, Lecture hall T (room E208)
 
 ## Preparations
 
