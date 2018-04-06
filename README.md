@@ -61,7 +61,7 @@ For the workshop, please clone the repository ala-docker and checkout the branch
     
     # get code
     git clone https://github.com/bioatlas/ala-docker.git
-    
+    cd ala-docker
     git checkout solr6-cassandra3
 
     # setting up
@@ -95,6 +95,6 @@ Once these steps succeed, further steps including testing, making changes, recom
 
 If you run into an issue related to any of these materials, please use GitHub to report it here:
 
-* [report any issues or bugs or suggestions](https://github.com/bioatlas/bioatlas-docker/issues).
+* [report any issues or bugs or suggestions](https://github.com/bioatlas/ala-docker/issues).
 
 
