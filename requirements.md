@@ -46,30 +46,28 @@ For variations of how to do this on MacOS and other platforms, please search the
 
 *Update:* Due to an [issue with self-signed SSL certs](https://github.com/bioatlas/ala-docker/issues/24), configuring self-signed certs will not be necessary for the workshop preparation. 
 
-<del>
-First make sure that you copy your certs into a `certs` directory - if you have existing certs - or use the Makefile to generate self-signed certs. 
+~~First make sure that you copy your certs into a `certs` directory - if you have existing certs - or use the Makefile to generate self-signed certs.~~
 
-If the Makefile you are using doesn't already have the necessary targets, see instructions at <https://github.com/bioatlas/zoa-docker> and in particular [the Makefile targets](https://github.com/bioatlas/zoa-docker/blob/master/Makefile#L43-L63) used there. Copy relevant sections with appropriate modifications into your Makefile and then issue:
+~~If the Makefile you are using doesn't already have the necessary targets, see instructions at <https://github.com/bioatlas/zoa-docker> and in particular [the Makefile targets](https://github.com/bioatlas/zoa-docker/blob/master/Makefile#L43-L63) used there. Copy relevant sections with appropriate modifications into your Makefile and then issue:~~
 
-		# to generate self-signed certs use
-		make ssl-certs
+		~~# to generate self-signed certs use~~
+		~~make ssl-certs~~
 
-		# inspect ssl cert in use with
-		make ssl-certs-show
+		~~# inspect ssl cert in use with~~
+		~~make ssl-certs-show~~
 
-Using self-signed certificates will require either the CA cert to be imported and installed either system-wide or in each of your apps. If you don't do this, apps will fail to request data using SSL (https).
+~~Using self-signed certificates will require either the CA cert to be imported and installed either system-wide or in each of your apps. If you don't do this, apps will fail to request data using SSL (https).~~
 
-So, besides configuring those certs for use in the backend services, you also need to:
+~~So, besides configuring those certs for use in the backend services, you also need to:~~
 
-- import the /tmp/certs/ca.pem file into Firefox/Chrome or other browsers or clients that you are using on the client side
+~~- import the /tmp/certs/ca.pem file into Firefox/Chrome or other browsers or clients that you are using on the client side~~
 
-Pls search for documentation on how to do it, for example:
+~~Pls search for documentation on how to do it, for example:~~
 
-<https://thomas-leister.de/en/how-to-import-ca-root-certificate/>
-<https://support.mozilla.org/en-US/questions/995117>
+~~<https://thomas-leister.de/en/how-to-import-ca-root-certificate/>~~
+~~<https://support.mozilla.org/en-US/questions/995117>~~
 
-NB: For curl to work, you may need to provide '--cacert /tmp/certs/ca.pem' switch or SSL requests will fail. 
-</del>
+~~NB: For curl to work, you may need to provide '--cacert /tmp/certs/ca.pem' switch or SSL requests will fail. ~~
 
 ## Reporting issues
 
