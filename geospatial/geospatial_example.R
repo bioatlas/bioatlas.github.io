@@ -1,8 +1,10 @@
+source("~/repos/bioatlas.github.io/geospatial/.Rprofile")
 library(ALA4R)
 library(ape)
 library(phytools)
 
 # uses BIE from Australia to resolve vernacular name
+
 sx <- search_fulltext("moose")
 
 first_hit <- sx$data[,c("name","rank")]$name[1]
@@ -22,7 +24,7 @@ library(tidyverse)
 library(DT)
 
 # use cached df if exists
-if (!exists("acles.Rda")) {
+if (!exists("alces.Rda")) {
   df <- occurrences(
     fq = c(paste0("genus:", genus), c(paste0("species:", species))), 
     download_reason_id = 10, 
