@@ -35,7 +35,7 @@ Here is an overview of some of the important repositories used in Biodiversity A
 
 - [bioatlas.github.io](https://github.com/bioatlas/bioatlas.github.io) - a documentation repository with the content for these web pages. The content is authored using markdown - a lightweight and easy-to-use syntax for styling text. This material is intended to provide this "welcome page" - a starting point for developers, system integrators or system administrators that are looking to getting up to speed working with the software used in Biodiversity Atlas Sweden which is deployed at "bioatlas.se"
 
-- [ala-docker](https://github.com/bioatlas/ala-docker) - the full system as a dockerized composition of software components, where micro-services packaged as containers are combined into the system running at [bioatlas.se](https://bioatlas.se). This is the main composition and it integrates many sub-components which are also available separately in other repositories - including for example various front-end components and back-end services such as [ala-hub](https://github.com/bioatlas/ala-hub) and [ala-collectory](https://github.com/bioatlas/ala-collectory).
+- [ala-docker](https://github.com/bioatlas/ala-docker) - the full system as a dockerized composition of software components, where micro-services packaged as containers are combined into the system running at [bioatlas.se](https://bioatlas.se). This is the main composition and it integrates many sub-components which are also available separately in other repositories - including for example various front-end components and back-end services such as [ala-hub](https://github.com/bioatlas/ala-hub), [ala-collectory](https://github.com/bioatlas/ala-collectory), [images](https://github.com/bioatlas/image-service), [api](https://github.com/bioatlas/webapi).
 
 - [wordpress-docker](https://github.com/bioatlas/wordpress-docker) and [bioatlas-wordpress-theme](https://github.com/bioatlas/bioatlas-wordpress-theme) and [artwork](https://github.com/bioatlas/artwork) are repositories that provide the front end landing page for "bioatlas.se" based on the Wordpress CMS and a custom wordpress theme with artwork inspired by (and closely aligned to) the theme used in the [Atlas of Living Australia](https://www.ala.org.au/). These repositories now replace the [earlier front page](https://github.com/bioatlas/ghost-docker) - which made use of another CMS platform called Ghost and which also had [an associated "theme"](https://github.com/bioatlas/gbifse-ghost).
 
@@ -57,12 +57,15 @@ Please first make sure that you take the time to prepare your development enviro
 
 You should then be able to issue these commands in order to get the contents of this repository, then build and start the services locally:
 
-For the workshop, please clone the repository ala-docker and checkout the branch solr6-cassandra3
+For the workshop, please clone the repository ala-docker and checkout the branch no-ssl-for-uppsala-workshop
+
+*Update:* Instructions have been changed (earlier the branch "solr6-cassandra3" was used) due to an [issue with self-signed SSL certs](https://github.com/bioatlas/ala-docker/issues/24). There is no need to start from scratch if you have the earlier branch, just do "git fetch" and "git checkout no-ssl-for-uppsala-workshop" and proceed as below.
     
     # get code
     git clone https://github.com/bioatlas/ala-docker.git
     cd ala-docker
-    git checkout solr6-cassandra3
+    git fetch
+    git checkout no-ssl-for-uppsala-workshop
 
     # setting up
     # The Makefile contains a number of rules. For setting up the system execute the following in the order as described.
@@ -75,6 +78,7 @@ For the workshop, please clone the repository ala-docker and checkout the branch
 
     # download and unzip the wordpress theme
     make theme-dl
+    ./baptize.sh
 
     # generate random passwords and save them in .env* files in the env
      folder, used for authentication between applications
@@ -83,14 +87,17 @@ For the workshop, please clone the repository ala-docker and checkout the branch
     # create and save admin password for simple authentication
     make htpasswd
 
-    # generate self-signed ssl certificates
-    make ssl-certs
-
     # start up the service
     make up
 
-Once these steps succeed, further steps including testing, making changes, recompiling and making contributions are possible.
+Containers are portable and the same containers can run on a laptop or in a server or a cloud-based infrastructure with a cluster.
 
+## Steps after successful installation
+
+Once the installation steps above succeed, next step when using the `ala-docker` system involves [ingesting data](https://github.com/AtlasOfLivingAustralia/documentation/wiki/Upload-data). 
+
+Also, further steps including testing, making code changes, recompiling and making contributions are possible. For making code changes, the Atlas community and software repositories are by nature polyglot and a variety of FOSS-friendly languages and tools are being used, such as Groovy (grails), Kotlin (JVM-based) with CLI tools such as http://sdkman.io/, and Java, JavaScript etc. When it comes to open source development tools there are different options for Integrated Development Environments, such as using popular text editors (SublimeText, vi, emacs etc) with configurations or using more traditional language-specific IDEs (NetBeans, Eclipse, IntelliJ IDEA, RStudio etc).
+    
 ## Reporting issues
 
 If you run into an issue related to any of these materials, please use GitHub to report it here:

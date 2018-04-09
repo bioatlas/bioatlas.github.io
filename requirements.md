@@ -44,6 +44,9 @@ For variations of how to do this on MacOS and other platforms, please search the
 
 ## Additional configuration for SSL
 
+*Update:* Due to an [issue with self-signed SSL certs](https://github.com/bioatlas/ala-docker/issues/24), configuring self-signed certs will not be necessary for the workshop preparation. 
+
+<del>
 First make sure that you copy your certs into a `certs` directory - if you have existing certs - or use the Makefile to generate self-signed certs. 
 
 If the Makefile you are using doesn't already have the necessary targets, see instructions at <https://github.com/bioatlas/zoa-docker> and in particular [the Makefile targets](https://github.com/bioatlas/zoa-docker/blob/master/Makefile#L43-L63) used there. Copy relevant sections with appropriate modifications into your Makefile and then issue:
@@ -66,6 +69,7 @@ Pls search for documentation on how to do it, for example:
 <https://support.mozilla.org/en-US/questions/995117>
 
 NB: For curl to work, you may need to provide '--cacert /tmp/certs/ca.pem' switch or SSL requests will fail. 
+</del>
 
 ## Reporting issues
 
