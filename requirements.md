@@ -50,11 +50,11 @@ For variations of how to do this on MacOS and other platforms, please search the
 
 ~~If the Makefile you are using doesn't already have the necessary targets, see instructions at <https://github.com/bioatlas/zoa-docker> and in particular [the Makefile targets](https://github.com/bioatlas/zoa-docker/blob/master/Makefile#L43-L63) used there. Copy relevant sections with appropriate modifications into your Makefile and then issue:~~
 
-		~~# to generate self-signed certs use~~
-		~~make ssl-certs~~
+~~# to generate self-signed certs use~~
+~~make ssl-certs~~
 
-		~~# inspect ssl cert in use with~~
-		~~make ssl-certs-show~~
+~~# inspect ssl cert in use with~~
+~~make ssl-certs-show~~
 
 ~~Using self-signed certificates will require either the CA cert to be imported and installed either system-wide or in each of your apps. If you don't do this, apps will fail to request data using SSL (https).~~
 
@@ -67,7 +67,7 @@ For variations of how to do this on MacOS and other platforms, please search the
 ~~<https://thomas-leister.de/en/how-to-import-ca-root-certificate/>~~
 ~~<https://support.mozilla.org/en-US/questions/995117>~~
 
-~~NB: For curl to work, you may need to provide '--cacert /tmp/certs/ca.pem' switch or SSL requests will fail. ~~
+~~NB: For curl to work, you may need to provide '--cacert /tmp/certs/ca.pem' switch or SSL requests will fail.~~
 
 ## Reporting issues
 
