@@ -1,0 +1,11 @@
+---
+title: ""
+output: 
+  html_document:
+    css: asciinema-player.css
+---
+
+<asciinema-player src="install.cast"></asciinema-player>
+
+<script src="asciinema-player.js" async data-autoplay="true" data-size="small" theme="solarized-light" width="760"></script>
+
