@@ -27,9 +27,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Topics
 
-* Run the install.cast here on a slide (approx 20 mins)
+* Verify the [host setup](../fullpull/dockerize.sh)
 
-<script ></script>
+* Verify that the [install procedure succeeds](../fullpull)
 
 * Troubleshooting and interactive session (rest of the time)
 
