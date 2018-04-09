@@ -1,0 +1,36 @@
+---
+title: "Installing on a host"
+author: ""
+date: "April, 2018"
+output:
+  ioslides_presentation:
+    logo: bioatlas-logo-small.png
+    smaller: no
+    transition: slower
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##    
+
+![Bioatlas](bioatlas-logo-small.png)
+
+    Biodiversity Atlas Sweden 
+    Uppsala
+    
+    April 12, 9:00 - 16:45
+    
+    Installing on a host
+
+## Topics
+
+* Run the install.cast here on a slide (approx 20 mins)
+
+<script ></script>
+
+* Troubleshooting and interactive session (rest of the time)
+
+

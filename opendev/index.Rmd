@@ -1,0 +1,163 @@
+---
+title: "Open Development - Why and How?"
+author: ""
+date: "April, 2018"
+output:
+  ioslides_presentation:
+    logo: bioatlas-logo-small.png
+    smaller: no
+    transition: slower
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##    
+
+![Bioatlas](bioatlas-logo-small.png)
+
+    Biodiversity Atlas Sweden 
+    Uppsala
+    
+    April 12, 9:00 - 16:45
+    
+    Open Development
+
+## Topics
+
+- Current Status
+- Why Open Development?
+- A Polarized View of Two Paradigms
+- Five Aspects of Long-term Data Management
+- Data Mobilization using Darwin Core Archives
+- Workflows using GitHub and Docker Hub
+
+## Current Status
+
+  - What we did since BAS start
+    * Dockerized some Atlas core components and used a frontend based on the Ghost CMS
+    * Deployed on bioatlas.se and ingested and indexed approx 44 datasets
+    
+## What we did this year
+
+* Education materials presented at [Nordic Oikos 2018 workshop in Trondheim](https://gbif-europe.github.io/nordic_oikos_2018_r/) - working with good Norwegian sampling event data examples
+* Attendance at Madrid workshop with European Atlas community resulting in an updated ala-docker stack - now using stock images (rather than custom) and up-to-date cassandra and solr stacks
+* Skinning - BAS theme for Swedish portal - new wordpress-theme, migrating from Ghost CMS
+* Adaptation of Swedish DCAT-AP standard and working on national/European data exchange formats, on GitHub using [a customized CKAN-setup](https://github.com/bioatlas/dcatap-swe-docker)
+* Mobilizing data to Darwin Core Archives
+* SUNET Cloud deployments - SafeSpring
+
+## What are we working on now?
+
+* Adding more components for working with geospatial data
+* Styling zoa-docker
+* Implementing SSO
+* Deploy to cluster - using Docker Swarm
+* Continuous Delivery Pipeline - commit, push, build, deploy
+* Upgrades of the ALA components stack - keeping up-to-date
+
+## Work on "non-core" modules
+
+  * Upgrades of non-core components - various infrastructure components
+    - ipt-docker
+    - darwinator - starting work on an R package for offline validation and generation of Darwin Core Archives
+    - piwik-docker for traffic analysis and metrics
+    - classifications-ng-docker
+    - bob-docker
+    - mail-docker
+    - nextcloud
+    - mattermost
+
+## Open Source Geospatial Software
+
+Examples of web-friendly frontends for geospatial analysis available under Open Source Licenses:
+
+- The ROpenSci community maintains [RStudio Web for Geospatial Tasks distro](https://hub.docker.com/r/rocker/geospatial/) with [sources available here](https://github.com/rocker-org/geospatial)
+- The Geographic Information Systems Stack Exchange has a community which provides support for the [Quantum GIS software](https://www.gislounge.com/qgis-versus-arcgis/) which is available from Docker Hub in a [qgis-server distro](https://hub.docker.com/r/kartoza/qgis-server/) and a [desktop variant](https://hub.docker.com/r/kartoza/qgis-desktop/)
+
+## Why Open Development?
+
+Not only about code, data and systems - actually mostly about *"People and Processes"* that collaborate rather than compete, sharing data and code. To enable creativity and innovation through freedom and rights to make changes provided through [Open Source Licenses](https://opensource.org/licenses).
+
+> Estonia: Uses FOSS solutions as much as possible across the board for tax payer financed software - a gov decision, so required to use it by law, reaches all the way out even consultants through procurement rules
+
+> Sweden: [IT-standarder, inlåsning och konkurrens - En analys av policy och praktik inom svensk förvaltning, UPPDRAGSFORSKNINGSRAPPORT 2016:2, Av Björn Lundell, Jonas Gamalielsson och Stefan Tengblad på uppdrag av Konkurrensverket](
+http://www.konkurrensverket.se/globalassets/publikationer/uppdragsforskning/forsk_rapport_2016-2.pdf)
+
+
+## [Jean Tirole et al, Nobel Prize Winner](http://www.nber.org/papers/w7600.pdf)
+
+Economic rationale:
+
+  - customization and bug-fixing benefits - issues can be fixed locally
+  - open source offers lower transaction costs for changing and those changes can be shared easily
+  - various developer incentives - such as ...
+    * pragmatic concerns (wants to avoid lock-in, maintenance issues, costly licenses etc)
+    * [career concerns](https://insights.stackoverflow.com/survey/2017#technology-most-loved-dreaded-and-wanted-wanted) and "alumni effect" - new alumni from academia are trained in Python and R etc rather than Borland C++ and ArcGIS and other tools with specific vendor lock-in
+    * peer recognition concerns (strives for fame / audience)
+    
+## Risks listed by Tirole et al
+
+- An open source project may be “hijacked” by a participant who builds a valuable module under a non-open license and  then  offers *proprietary  APIs*  to  which  application  developers are encouraged to writing apps - a “middleware” hijack.
+- *Coexistence of commercial activities* can pollute the open source development process - developers may stop interacting and contributing freely if they think they have opportunities and ideas for modules that might yield  a  huge  commercial  payoff - such as evolving modules to create a commercial ecosystem to support targeted web-based ads. Soon too many programmers may start go into closed source mode to focus on the commercial side thereby making the open source development process less efficient.
+
+## Why AGPLv3 at system level?
+
+- Examples where Affero GPLv3 licenses are used at the system distribution level to avoid commercial forks splintering the user community - both available as containers from Docker Hub:
+  + [nextcloud](https://nextcloud.com/)
+  + [rstudio](https://rstudio.cloud/)
+
+## A Polarized View of Two Paradigms
+
+|Open|Non-Open|
+|---|---|
+|Public / government / research - data is common good|Private / corporate / business - data is secret and a competitive advantage|
+|Source code lives on GitHub and apps on Docker Hub -> "Look Under The Hood" Transparency|Source code lives on Internal Network with no external public access -> "Walled Garden" with "Trust Me Blindly" Opaqueness|
+|FOSS-licenses set at inception|Non-FOSS licenses or Not (Yet) Known|
+|Avoids lock-ins|Proud over Lock-ins - "we got great rebates from vendors"|
+|Polyglot - tolerance for any languages running on FOSS stack|Monoculture - dictates use of a specific language|
+
+## continued...
+
+|Open|Non-Open|
+|---|---|
+|Modules - independent units loosely coupled|Monorepos - tight dependencies|
+|Decentralized Distributed Micro-Services (nodes with in-built redundancy)|Centralized (one-stop-shop monolithic website with SPOF, Single Point of Failure and Single Sign On loginwall)|
+|Portable, immutable infrastructure - Runs on laptop/cloud/anywhere|Stateful Servers (often with vendor lock-in) - Runs only on specific servers|
+|Local build possible from source|"Depend on and Trust this EXE or binary blob"|
+|Agile - developed with "diffs" from current state with continuous delivery - Bazaar Building Style adapting quickly to changes in environment|Waterfall - Five-Year Long Central Plans - Cathedral Building Style waiting often long times for the Final Delivery|
+
+## Data Mobilization - why important?
+
+> EPA: "Choose Open Standards without licensing costs instead of proprietary or vendor-specific formats" (Naturvårdsverket 2016)
+
+- Avoid problematic vendor lock-in and enable long-term maintenance of data using standardized archive formats
+
+- Long-term sustainable file formats and software projects are fundamental prerequisites for long-term maintenance of biodiveristy information over longer periods of time (decades) - data archives won't change as often as software or APIs
+
+- Swedish Land Survey Office [about using the Creative Commons license CC0 for publishing open  data](https://oppnadata.se/2018/01/15/publicera-data-som-oppna/).
+
+## Data Management Considerations
+
+Principles for managing data over a long life cycles - five recommendations:
+
+- Make use of *sustainable communities and projects* - consider socio-technical perspectives. Are there communities with a life length more than a couple of years that maintains standards/formats/tools and "are there stable releases over time publicly available"? The GBIF and Atlas communities offer this.
+
+- Don't "bikeshed" - use already *existing appropriate open standards/formats* (such as DarwinCore Archives with zipped CSV, DCAT-AP standard for national and European data sharing) rather than making interoperable systems elsewhere dependant on custom XML/JSON from local homegrown APIs
+
+## continued ...
+
+- Use *appropriate licenses (technical, legal)* - such as Creative Commons licenses for content and Affero GPLv3 for code.
+
+- Use *suitable available libraries* for reading and writing the formats (supporting automation using various languages - examples include dwcio libraries, name parsers etc, conversion tools)
+
+- Use *relevant and adequate FOSS tools* - ALA and GBIF offer many software components (such as IPT, Darwin Core validator tools and perhaps also various APIs that extend use to HTTP and which are expected to change more frequently than underlying archival file formats). There are also CKAN with DCAP-AP-extensions for Open Data exchange along with various format conversion tools (ipt-to-dcatapswe), EML parser etc.
+
+## Open Development - How?
+
+  + Collaboration tools - use [GitHub](https://guides.github.com/) for code - see this ["GitHub Hello World" intro](https://guides.github.com/activities/hello-world/) and then this [code](https://github.com/bioatlas)
+  + Collaboration tools - use [Docker Hub](https://docs.docker.com/docker-hub/builds/) for [apps](https://hub.docker.com/r/bioatlas/) and deliver containers with APIs instead of depending on third-party web services behind login walls
+  + Getting Started with Biodiversity Atlas Sweden collaborations - see https://bioatlas.github.io
+

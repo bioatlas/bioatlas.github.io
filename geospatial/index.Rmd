@@ -1,0 +1,58 @@
+---
+title: "Mirroreum with ALA4R for geospatial data"
+author: ""
+date: "April, 2018"
+output:
+  ioslides_presentation:
+    logo: bioatlas-logo-small.png
+    smaller: no
+    transition: slower
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##    
+
+![Bioatlas](bioatlas-logo-small.png)
+
+    Biodiversity Atlas Sweden 
+    Uppsala
+    
+    April 12, 9:00 - 16:45
+    
+    Mirroreum with ALA4R for geospatial data
+
+## Topics
+
+* Stack for geospatial analysis tasks
+* <https://github.com/bioatlas/mirroreum>
+* Automated Build at Docker Hub - rebuilds when GitHub repo changes
+* <https://hub.docker.com/r/bioatlas/mirroreum>
+* Deployed at bioatlas.se
+* <https://mirroreum.bioatlas.se>
+
+## Why use "mirroreum"?
+
+* Why not use another web page?
+  - Reproducible Open Research (other web pages can often not be scripted)
+  - Work locally, off-line (rstudio.cloud doesn't work off-line)
+  - Certain tasks like Niche Modelling happen naturally in an RStudio IDE
+  - Dashboards or canned reports are different
+
+## Example
+
+Explain [R config for ALA](.Rprofile)
+Use [example with Swedish Moose](geospatial_example.R)
+
+## Automated Build
+
+The [Mirroreum repo](https://github.com/bioatlas/mirroreum) is a stack for geospatial analysis tasks available as a versioned [Docker image](https://hub.docker.com/r/bioatlas/mirroreum) which rebuilds when the GitHub repo is updated through an [Automated Build](https://docs.docker.com/docker-hub/builds/).
+
+## Integration into ala-docker
+
+Mirroreum is integrated into ala-docker or elsewhere where docker and docker-compose runs:
+
+* <https://github.com/bioatlas/ala-docker/blob/master/docker-compose.yml#L262-L270>

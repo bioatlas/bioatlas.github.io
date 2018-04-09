@@ -1,0 +1,143 @@
+---
+title: "Developing, integrating and deploying an Atlas module"
+author: "Markus Skyttner"
+date: "April, 2018"
+output:
+  ioslides_presentation:
+    logo: bioatlas-logo-small.png
+    smaller: no
+    transition: slower
+
+---
+
+## 
+
+![](../../101/architecture.png)
+
+## A modular system
+
+The core components of a Living Atlases system include various data stores, data services / APIs and front-end components as well as Command Line Interface (CLI) tools. This core set of components used in the Bioatlas composition are listed in detail [here](https://github.com/bioatlas/ala-docker/blob/master/docker-compose.yml). 
+
+In addition to the core components there are various non-core components that address various infrastructure needs - for example components such as a name resolver to simplify local development deployments using wildcard subdomains and a reverse proxy for web traffic routing and SSL termination along with components for routing web traffic internally, running backups etc.
+
+## What is a "Module"?
+
+- An independent unit of work that can be worked upon in parallell and that can be delivered as a repo and/or container
+
+- The full system can be built and deployed locally from compositions of these modules - it takes approximately 20 + 20 minutes on a regular laptop with a decent network connection. The build step can be skipped - saving about 20 minutes - as pre-built images are pulled directly from a remote repository.
+
+## Examples of modules
+
+- an API or set of APIs providing data services
+- a web portal or CMS providing a web user interface 
+- a Wordpress theme
+- a Ghost theme
+- artwork reused across frontend components
+- web-enabled analysis frontend for geospatial data
+
+## Requirements
+
+To build from sources and run the system locally, you need some linux host with `docker` and `docker-compose`, `make` and `git` installed. If you bootstrap the system for development purposes, starting from scratch, we recommend that you use an up-to-date Linux desktop OS in the continuation. The host where you run the system can then be your laptop or it could be some other networked linux box that you have access to. 
+
+As a time-saver, for bootstrapping convenience, if you are on a non-FOSS operating system, consider to use VirtualBox and start up for example a recent Linux Mint distro for a smooth experience. Then install `docker` with `docker-compose` (there are great official guides for this - use a search engine) and other required system tools and libraries (starting with the essential `sudo apt install make git`).
+
+## Development environment
+  
++ Use VMs (install VirtualBox with an OS such as Ubuntu that has Ansible installed) or use Docker (light-weight containers)
++ Pull images (OVA or Docker Images)
++ Develop and run locally, make changes, test and then commit back to GitHub
++ New module - building a FOSS stack from scratch - what to strive for and what to avoid
+
+## The README.md file
+
+To start up the system or a particular set of components locally, consult the README.md files in the relevant repositories - those give startup instructions, which often involve using the `Makefile` to work with the project's compositions of components as listed and defined in more detail in the `docker-compose.yml` file.
+
+## Making a change or contribution
+
+When you're up and running with your local development environment, you can build the system locally and start it. This means you can now start to change or improve the system, perhaps doing work in order to address an issue at GitHub, such as this one:
+
+* <https://github.com/bioatlas/bioatlas-docker/issues/28>
+
+Working on the ticket above you may find that you need to set up a module - a minimal portable self-contained composition of microservices - which could go into a separate repo which later could be integrated into the full system. 
+
+## Choosing a base stack
+
+Use an existing component if possible rather than building from scratch or bike-shedding. The Wordpress CMS is used elsewhere across the Atlas community so locate an official image for Wordpress at the Docker Hub, use that and then do the initial work in a separate repository: 
+
+* <https://github.com/bioatlas/wordpress-docker>
+
+The Wordpress is a CMS with many features and it makes use of "themes" for the web portal's design.
+
+## Theme module
+
+The theme is a way to provide a skin or a look-and-feel adhering to a graphical profile incorporating certain artwork, specific color palettes etc.
+
+Again this is another component or separate module - so fork it from a suitable Atlas repository and work on it in a separate repository:
+
+* <https://github.com/bioatlas/bioatlas-wordpress-theme>
+
+Then elsewhere - in the "wordpress-docker", change the `Makefile` to reference the "bioatlas-wordpress-theme" archive:
+
+* <https://github.com/bioatlas/wordpress-docker/blob/master/Makefile#L8>
+
+## Forking and rebuilding libraries
+
+If the work involves customizing a particular forked library you may need to setup a build and release a versioned build to GitHub Releases. When you are happy with the various changes you have worked on, you need to give the new build a version number - using semantic versioning. 
+
+[Travis CI is a hosted, distributed continuous integration service](https://travis-ci.org/) used to build and test software projects hosted at GitHub. It can be used to trigger builds from a tagged git push, that then deploy the release to GitHub Releases (or to many other deployment targets, if needed). 
+
+## Using Travis - Builds and Releases
+
+An example of such a customized Atlas module:
+
+* <https://github.com/bioatlas/ala-hub/blob/master/.travis.yml#L18-L29>
+
+The build history is available here:
+
+* <https://travis-ci.org/bioatlas/ala-hub/builds>
+		
+The releases for this module are available here:
+
+* <https://github.com/bioatlas/ala-hub/releases>
+
+## System integration modules
+
+In the instance of building a new artifact and releasing to GitHub releases - we need to update system integration repositories that build images that incorporates this artifact:
+
+*	<https://github.com/bioatlas/ala-docker/blob/master/Makefile#L15>
+
+Finally as modules such as the above ones evolve and become ready to be incorporated into the full system - we can make a Pull Request with the change at GitHub for integration into <https://github.com/bioatlas/ala-docker>.
+
+## continued...
+
+This module can be delivered as a Docker image which will be built from a Dockerfile:
+
+* <https://github.com/bioatlas/ala-docker/blob/master/biocachehub/Dockerfile>
+    
+... and the image will be publicly available from Docker Hub:
+
+* <https://hub.docker.com/r/bioatlas/ala-biocachehub/>
+
+## Summary
+
++ Organize work anchored into a GitHub repo
++ Define a unit of work which allows independent parallell work - avoid to create sequential blocks for collaborators
++ Don't build from scratch if there is existing software
++ If a new library or equiv low level component: ensure local reproducible build from source is possible through Makefile
++ Add a .travis.yml file for a global build
++ Use a README.md file to provide developers with an introduction, steps involved in usage
++ Strive for tagged releases and always deployable master branch (GitFlow - commit on feature branch, PR to merge)
+
+## Example: Skinnable portal for a community  
+  
+We want a skinnable front-end component for a web portal... 
+
+Existing portals - for trees, water organizm and other communities... what stacks are these based on and supporting what type of collaboration? Are these stacks "future proof" - can they be container based and enable community interactions? 
+
+What can we use that already exists? 
+
+Are there good reasons to start developing a new class or function from scratch?
+
+## Example module: zoa-docker
+
+A zoological animal tracking module
