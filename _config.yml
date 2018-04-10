@@ -1,2 +1,4 @@
 theme: jekyll-theme-cayman
+title: Biodiversity Atlas Sweden @ GitHub
+description: Notes on getting started
 permalink: /:categories/:year/:month/:day/:title/
