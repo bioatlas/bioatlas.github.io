@@ -103,7 +103,9 @@ The [first location](http://bioatlas.se/) will lead to the Wordpress container, 
 
 Once the installation steps above succeed, next step when using the `ala-docker` system involves [ingesting data](https://github.com/AtlasOfLivingAustralia/documentation/wiki/Upload-data). 
 
-Also, further steps including testing, making code changes, recompiling and making contributions are possible. For making code changes, the Atlas community and software repositories are by nature polyglot and a variety of FOSS-friendly languages and tools are being used, such as Groovy (grails), Kotlin (JVM-based) with CLI tools such as http://sdkman.io/, and Java, JavaScript etc. When it comes to open source development tools there are different options for Integrated Development Environments, such as using popular text editors (SublimeText, vi, emacs etc) with configurations or using more traditional language-specific IDEs (NetBeans, Eclipse, IntelliJ IDEA, RStudio etc).
+Also, further steps including testing, making code changes, recompiling and making contributions are possible. For making code changes, the Atlas community and software repositories are by nature polyglot and a variety of FOSS-friendly languages and tools are being used, such as Groovy (grails) with CLI tools such as http://sdkman.io/ and Kotlin, Java, Scala (JVM-based), JavaScript, R etc. Here is a [brief intro to Grails](https://docs.google.com/presentation/d/1tF_qEnaQMsF7EVKx6cPleMw8Pc-_fDZpe17s8wkmdAY).
+
+When it comes to open source development tools there are different options for Integrated Development Environments, such as using popular text editors (SublimeText, vi, emacs etc) with configurations or using more traditional language-specific IDEs (NetBeans, Eclipse, IntelliJ IDEA, RStudio etc).
 
 Docker images are portable in the sense that containers can run on a developer's laptop or in a production server or in a cloud-based infrastructure.
 

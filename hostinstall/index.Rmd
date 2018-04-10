@@ -27,10 +27,32 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Topics
 
-* Verify the [host setup](../fullpull/dockerize.sh)
+* Verify the [host setup](https://bioatlas.github.io/requirements) - an OS with `docker` and `docker-compose` and `git` [bootstrapped](../fullpull/dockerize.sh)
 
-* Verify that the [install procedure succeeds](../fullpull)
+* Verify that the install procedure succeeds - doing a full initial pull of all images from Docker Hub needs approx 20G of disk and takes about 15-20 min on an average office network connection - this step should look like this [asciicast](../fullpull)
 
 * Troubleshooting and interactive session (rest of the time)
 
+## Bootstrapping on Linux Mint OS (18.3)
+
+```bash
+#!/bin/bash
+# run this script with sudo to 
+#install git, docker and docker-compose 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository \
+  "deb [arch=amd64] https:/download.docker.com/linux/ubuntu xenial stable"
+apt update -y
+apt install -y docker-ce python-pip git
+pip install --upgrade pip
+pip install setuptools
+pip install docker-compose
+usermod -aG docker $USER
+
+# set up DNS and reload DNS settings
+bash -c \
+  'echo "nameserver 172.17.0.1" >> /etc/resolvconf/resolv.conf.d/head'
+systemctl restart resolvconf.service
+
+```
 

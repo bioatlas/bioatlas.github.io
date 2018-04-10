@@ -44,8 +44,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Example
 
-Explain [R config for ALA](.Rprofile)
-Use [example with Swedish Moose](geospatial_example.R)
+* Explain [R config for ALA](.Rprofile)
+* Use [example with Moose in Sweden](geospatial_example.R)
 
 ## Automated Build
 
@@ -56,3 +56,7 @@ The [Mirroreum repo](https://github.com/bioatlas/mirroreum) is a stack for geosp
 Mirroreum is integrated into ala-docker or elsewhere where docker and docker-compose runs:
 
 * <https://github.com/bioatlas/ala-docker/blob/master/docker-compose.yml#L262-L270>
+
+Account management in Mirroreum is based on Linux/Unix user accounts and users and home folders are created and managed like on Unix systems.
+
+Since this is a Docker container, it can be pulled and run locally and independently, even in an off-line scenario.

@@ -52,6 +52,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## What are we working on now?
 
 * Adding more components for working with geospatial data
+* Add more [taxonomic search services](https://github.com/AtlasOfLivingAustralia/bie-index)
 * Styling zoa-docker
 * Implementing SSO
 * Deploy to cluster - using Docker Swarm

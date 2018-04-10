@@ -1,4 +1,4 @@
-source("~/repos/bioatlas.github.io/geospatial/.Rprofile")
+#source("~/repos/bioatlas.github.io/geospatial/.Rprofile")
 library(ALA4R)
 library(ape)
 library(phytools)
@@ -30,7 +30,7 @@ if (!exists("alces.Rda")) {
     download_reason_id = 10, 
     use_layer_names = FALSE
   )
-  saveRDS("alces.Rda")
+  saveRDS(df, "alces.Rda")
 } else {
   df <- readRDS("alces.Rda")
 }
@@ -119,11 +119,11 @@ fq = c(paste0("genus:", genus), c(paste0("species:", species)))
 res <- as_tibble(specieslist(taxon = "*", wkt = wkt))
 
 # download occurrences from within a specific area (Jämtland)
-if (!exists("alces-jämtland.Rda")) {
+if (!exists("alces-j.Rda")) {
   occ_alces_alces <- as_tibble(occurrences("Alces alces", wkt, download_reason_id = 10)$data)
-  saveRDS(occ_alces_alces, "alces-jämtland.Rda")
+  saveRDS(occ_alces_alces, "alces-j.Rda")
 } else {
-  occ_alces_alces <- readRDS("alces-jämtland.Rda")  
+  occ_alces_alces <- readRDS("alces-j.Rda")  
 }
 
 # occ_alces_alces %>% count(year(parse_date_time(occ_alces_alces$eventDate, orders = "ymd")))
