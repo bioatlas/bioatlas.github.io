@@ -1,0 +1,95 @@
+---
+title: "Biocache-Store : Data management CLI tool"
+author: "Manash Shah"
+date: "April, 2018"
+output:
+  ioslides_presentation:
+    logo: bioatlas-logo-small.png
+    smaller: no
+    transition: slower
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Biocache-Store
+
+* Command Line Interface tool
+* Implemented in Scala
+* Built with maven
+* External property file for configuration
+
+## Functions / Features
+
+Manage occurrence records
+
+   * Loading 
+   * Sampling 
+   * Processing  
+   * Indexing
+
+Additional support
+
+  * Outliers detection 
+  * Duplicate detection
+  * Identifying extra-limital outliers
+  
+## Loading
+
+  * Load resource (DarwinCore Archive/ CSV), IPT Integration.
+  * Retrieve metadata JSON from registry
+  * Construct a map of supplied field name and Index
+  * Get related multimedia if applicable
+  * Load the data into the database 
+
+## Sampling
+
+  * Get distinct coordinates
+  * Build Location coordinates set 
+  * Intersection with available layers
+  * Write to databse 
+
+## Processing
+
+  * Metadata and records quality assertions
+  * Taxonomic Classification matching
+  * Parse locality information including coordinates
+  * Date parsing
+  * Attributions
+  * Sensitive Data processing
+  * Miscellaneous Assertions
+
+## Indexing
+
+  * Write records to SOLR index
+  * Reprocessing the dataset
+  * Resampling the dataset
+  * Creating a new complete index offline
+
+## Outliers detection
+
+  * Checks for outliers
+  * Takes a taxon
+  * Intersects the corresponding occurrences for the input taxon with the environmental layers
+  * Flags the potential outliers
+
+## Duplicate detection
+
+  * Get a distinct list of species LSID and a distinct list of subspecies LSIDs (without species LSIDs) that     have been matched
+  * Group records based on the date (year, months and subsequently date)
+  * With the smallest grained group, group all the similar "collectors" 
+  * With the collector groups, determine which of the records have the same coordinates to identify duplicates
+
+## Extra-limital outliers
+
+  * Intersects with a predefined expert distribution polygon for the given taxon
+  * Flags the potential outliers
+  
+## 
+
+* https://github.com/AtlasOfLivingAustralia/biocache-store
+
+* [asciicast showing ingestion of data](../ingest)
+  

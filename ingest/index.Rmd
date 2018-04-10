@@ -1,0 +1,9 @@
+---
+output:
+  html_document:
+    css: asciinema-player.css
+---
+
+<asciinema-player src="biocache.cast"></asciinema-player>
+
+<script src="asciinema-player.js" async data-autoplay="true" data-size="small" width="800"></script>
