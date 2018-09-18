@@ -1,0 +1,59 @@
+# Harvesting occurrence data from bioatlas.se using APIs
+
+The Living Atlases Occurrence Search and Download APIs used in https://bioatlas.se are documented here: 
+
+https://bioatlas.se/api/
+
+This primer demonstrates how to retrieve occurrence data using a few common clients: bash with curl and wget, firefox and R.
+
+## Occurrence data JSON API
+
+Using the occurrence API, data can be retrieved in JSON format, directly using the web browser, for example:
+
+```bash
+# all occurrence data directly in web browser
+firefox https://bioatlas.se/biocache-service/occurrences/search &
+```
+
+Using R instead:
+
+```{r message=FALSE}
+library(jsonlite)
+message("get JSON from bioatlas occurrence search API:")
+req <- fromJSON("https://bioatlas.se/biocache-service/occurrences/search")
+
+library(dplyr)
+library(knitr)
+library(tibble)
+message("displaying 5 rows and 5 cols of the request as a table ")
+df <- req$occurrences %>% tail(5) %>% select(-miscIntProperties) %>% as_tibble
+kable(df %>% select(1:5))
+```
+
+The APIs makes use of Apache Solr search indexing and queries can be filtered on (any combination of) dimensions, such as the "occurrence_date", here we get all occurrence data with an occurrence date from the 28th of July 2018 up till now:
+
+```bash
+# data since end of July 2018 and up to now, NB usage of backslash to escape [ and ] with curl
+curl "https://bioatlas.se/biocache-service/occurrences/search?q=occurrence_date%3A\[2018-07-28T00%3A00%3A00Z+TO+*\]" | json_pp
+```
+
+For details about how to specify a time range (like above), consult [the official documentation here](https://wiki.apache.org/solr/CommonQueryParameters#fq)
+
+## Occurrence download API
+
+Using the occurrence download API, this data can be downloaded as a zip-file, like so:
+
+```bash  
+# get all occurrence data since 2017-01-01 as a zip
+	wget -q --show-progress -O dl.zip  "https://bioatlas.se/biocache-service/occurrences/download?q=occurrence_date%3A[2017-01-01T00%3A00%3A00Z+TO+*]&reasonTypeId=10"
+```
+This `dl.zip` file contains CSV files with the occurrence data itself but also citations to use, further information about the headings and a README-file in HTML-format.
+
+## Using the ALA4R package
+
+The ALA4R package provides functions for getting occurrence data that makes use of these APIs. 
+
+The most frequently used function is documented [here](https://rdrr.io/cran/ALA4R/man/occurrences.html) and some usage examples are provided.
+
+Available fields that can be used in the occurrence search API along with the mappings to Darwin Core terms are documented [here](https://docs.google.com/spreadsheets/d/1ayiiBxAFhy5bpeMUHOF1nyOP6yaYv1F_f8DvtLoeRx8/edit#gid=0).
+
