@@ -65,7 +65,7 @@ For the workshop, please clone the repository ala-docker and checkout the branch
     git clone https://github.com/bioatlas/ala-docker.git
     cd ala-docker
     git fetch
-    git checkout no-ssl-for-uppsala-workshop
+    git checkout develop
 
     # setting up
     # The Makefile contains a number of rules. For setting up the system execute the following in the order as described.
